@@ -44,7 +44,7 @@ const PRODUCTS_DATA = {
         { id: "s2", name: "Brownie Premium", price: 18, desc: "Brownie de chocolate belga com sorvete.", img: "https://images.unsplash.com/photo-1607920591413-4ec007e70023?auto=format&fit=crop&w=500&q=80" },
         { id: "s3", name: "Petit Gateau", price: 22, desc: "Bolinho quente com sorvete de baunilha.", img: "https://images.unsplash.com/photo-1624353365286-3f8d62daad51?auto=format&fit=crop&w=500&q=80" },
     ],
-     sobremesas_do_tio: [
+    sobremesas_do_tio: [
         { id: "ss1", name: "Sorvete de Frutas 22", price: 15, desc: "Sorvete artesanal com frutas da estação.", img: "https://www.lojabrazil.com.br/blog/wp-content/uploads/2024/04/sobremesas-para-restaurantes-03.jpg" },
         { id: "ss2", name: "Brownie Premium 22", price: 18, desc: "Brownie de chocolate belga com sorvete.", img: "https://images.unsplash.com/photo-1607920591413-4ec007e70023?auto=format&fit=crop&w=500&q=80" },
         { id: "ss3", name: "Petit Gateau 22", price: 22, desc: "Bolinho quente com sorvete de baunilha.", img: "https://images.unsplash.com/photo-1624353365286-3f8d62daad51?auto=format&fit=crop&w=500&q=80" },
@@ -153,7 +153,7 @@ function renderProducts() {
                 </div>
             `).join('');
 
-            const list5 = document.getElementById("productList5");
+    const list5 = document.getElementById("productList5");
     list5.innerHTML = PRODUCTS_DATA.sobremesas_do_tio.map(p => `
                 <div class="card">
                     <img src="${p.img}" alt="${p.name}" class="card-img">
@@ -359,7 +359,7 @@ function toggleCart() {
 // Checkout
 function checkout() {
     if (cart.length === 0) {
-        alert("🛒 Seu carrinho está vazio.");
+        alert("Seu carrinho está vazio.");
         return;
     }
 
@@ -390,18 +390,18 @@ function checkout() {
     let total = subtotal + delivery - discount;
 
     let msg = `✨ *NOVO PEDIDO - PUFFE BISTRO* ✨\n\n`;
-    msg += `👤 *Cliente:* ${document.getElementById("nome").value}\n`;
-    msg += `📞 *Tel:* ${document.getElementById("telefone").value}\n\n`;
+    msg += ` *Cliente:* ${document.getElementById("nome").value}\n`;
+    msg += ` *Tel:* ${document.getElementById("telefone").value}\n\n`;
 
     if (deliveryMode === 'delivery') {
         msg += ` *ENTREGA*\n`;
         msg += ` *Endereço:* ${document.getElementById("rua").value}, ${document.getElementById("bairro").options[document.getElementById("bairro").selectedIndex].text}, ${document.getElementById("cidade").value}\n`;
         if (document.getElementById("cep").value) msg += ` *CEP:* ${document.getElementById("cep").value}\n`;
     } else {
-        msg += `🏪 *RETIRAR NA LOJA*\n`;
+        msg += ` *RETIRAR NA LOJA*\n`;
     }
 
-    msg += `\n🛒 *Itens do Pedido:*\n`;
+    msg += `\n *Itens do Pedido:*\n`;
     cart.forEach((item, index) => {
         const adicionaisTotal = item.adicionais.reduce((s, a) => s + a.price, 0);
         const itemTotal = item.price + adicionaisTotal;
@@ -417,7 +417,7 @@ function checkout() {
         }
 
         if (item.obs) {
-            msg += `   💬 Obs: ${item.obs}\n`;
+            msg += `    Obs: ${item.obs}\n`;
         }
 
         msg += `   *Subtotal do item: R$ ${itemTotal.toFixed(2)}*\n`;
