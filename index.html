@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puffe Bistro Burguer | Premium Delivery</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="menu.css">
+</head>
+
+<body>
+    <header>
+        <h1>Puffe Bistro Burguer</h1>
+        <p style="color: var(--accent); letter-spacing: 3px;">ARTESANAL & MARCANTE</p><br><br><p style="color: var(--accent); letter-spacing: 1px;">Horário de Atendimento: 18h às 24h (Segunda-Feira a Domingo)</p>
+    </header>
+
+    <div class="status" id="storeStatus"></div>
+
+    <div class="container">
+        <h2 class="section-title">Nosso Cardápio</h2>
+        <h2 class="section-subtitle"><i>HAMBÚRGUERES</i></h2>
+        <div class="products" id="productList"></div><br>
+        <h2 class="section-subtitle"><i>PORÇÕES</i></h2>
+        <div class="products2" id="productList2"></div><br>
+        <h2 class="section-subtitle"><i>BEBIDAS</i></h2>
+        <div class="products3" id="productList3"></div><br>
+        <h2 class="section-subtitle"><i>SOBREMESAS</i></h2>
+        <div class="products4" id="productList4"></div><br>
+           <h2 class="section-subtitle"><i>SOBREMESAS do tio</i></h2>
+        <div class="products4" id="productList5"></div><br>
+    </div>
+
+    <div class="cart-button" onclick="toggleCart()">
+        🛒
+        <span class="cart-count" id="cartCount" style="display:none;">0</span>
+    </div>
+
+    <div class="cart-panel" id="cartPanel">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h2>Seu Pedido</h2>
+            <span onclick="toggleCart()" style="cursor:pointer; font-size: 24px;">&times;</span>
+        </div>
+
+        <div id="cartItems"></div>
+
+        <div class="total-box" id="totals"></div>
+
+        <div style="display:flex; gap: 5px;">
+            <input type="text" id="coupon" placeholder="Cupom de desconto">
+            <button onclick="applyCoupon()"
+                style="padding: 12px; background: var(--accent); border:none; border-radius:8px; cursor:pointer; color:var(--dark); font-weight:600;">Aplicar</button>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #333; margin: 20px 0;">
+
+        <h3 style="margin-bottom:15px">Dados do Pedido</h3>
+
+        <!-- NOVO: Botões de Alternância -->
+        <div class="delivery-toggle">
+            <div class="toggle-btn active" id="btnDelivery" onclick="setDeliveryMode('delivery')">
+                 ENTREGA
+            </div>
+            <div class="toggle-btn" id="btnRetirada" onclick="setDeliveryMode('retirada')">
+                 RETIRAR NA LOJA
+            </div>
+        </div>
+
+        <input id="nome" placeholder="Nome Completo*">
+        <input id="telefone" placeholder="Telefone / WhatsApp*">
+
+        <!-- NOVO: Seção de endereço que aparece/desaparece -->
+        <div class="address-section show" id="addressSection">
+            <input id="rua" placeholder="Rua e Número*">
+            <select id="bairro">
+                <option value="">Escolha seu Bairro*</option>
+                <option value="ano-bom">Ano Bom</option>
+                <option value="bomplandt">Bomplandt</option>
+                <option value="caminho-pequeno">Caminho Pequeno</option>
+                <option value="centro">Centro</option>
+                <option value="itapocu">Itapocu</option>
+                <option value="izabel">Izabel</option>
+                <option value="joao-tozini">João Tozini</option>
+                <option value="pedra-de-amolar">Pedra de Amolar</option>
+                <option value="poco-danta">Poço D'Anta</option>
+                <option value="rio-novo">Rio Novo</option>
+                <option value="seminario">Seminário</option>
+                <option value="xv-de-novembro">XV de Novembro</option>
+            </select>
+            <input id="cidade" placeholder="Cidade*">
+            <input id="cep" placeholder="CEP">
+        </div>
+
+        <textarea id="obs" placeholder="Alguma observação no pedido?"></textarea>
+
+        <select id="pagamento">
+            <option value="">Forma de pagamento*</option>
+            <option value="dinheiro">Dinheiro</option>
+            <option value="pix">Pix</option>
+            <option value="credito">Cartão de Crédito</option>
+            <option value="debito">Cartão de Débito</option>
+        </select>
+        <input id="troco" placeholder="Troco para quanto? (se o pagamento for em dinheiro)">
+
+        <button class="checkout-btn" onclick="checkout()">Enviar para o WhatsApp</button>
+    </div>
+
+    <!-- NOVO: Modal de Adicionais -->
+    <div class="modal" id="adicionaisModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h3 id="modalProductName">Personalizar Pedido</h3>
+            <p style="color: var(--gray); margin-bottom: 20px;">Selecione os adicionais:</p>
+            
+            <div id="adicionaisList"></div>
+
+            <textarea class="obs-input" id="modalObs" placeholder="Observações sobre este item (ex: sem cebola, ponto da carne, etc.)"></textarea>
+
+            <button class="modal-add-btn" onclick="confirmAddToCart()">Adicionar ao Carrinho</button>
+        </div>
+    </div>
+   <script src="menu.js"></script>
+</body>
+</html>
